@@ -20,8 +20,13 @@ This Python program implements a guessing game similar to the popular online gam
 
 - Python 3.x
 - Node.js
-- requests (pip install requests)
 
+- requests (pip install requests)
+- colorama (pip install colorama)
 
 ## Todo
 - Implement a proper user interface
+
+## Acknowledgements
+- Inspired by the game `Wordle`
+- Idea by 3Blue1Brown: https://www.youtube.com/watch?v=v68zYyaEmEA (minus all the cool maths)

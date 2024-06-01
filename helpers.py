@@ -3,6 +3,11 @@ import os, time, string, requests, json, threading
 from enum import Enum
 from collections import OrderedDict
 
+import colorama
+from colorama import Fore, Style
+
+colorama.init()
+ 
 class WordRanking(Enum):
     GRAY = 0
     YELLOW = 1
@@ -29,9 +34,6 @@ class WordleHelper(object):
         input_value = input_value.lower()
         return True
     
-    def get_word_score(self, input_value : str) -> float:
-        return 0.0
-    
     def ask_guess(self):
         guess = input('[+] Enter your guess: ')
         if self.input_validation(guess):
@@ -48,16 +50,14 @@ class WordleHelper(object):
 
             if info == 1:
                 print('[+] Good job! That was the correct guess.')
-                break
-            
+                return
+
             neutral = info
 
             top30 = dict(list(neutral.items())[:5])
             print(top30)
         
-        continuation = input('Do you wanna play again? Y/N: ')
-        if continuation.lower() == "Y":
-            self.main_input_loop()
+        print("[-] Game over!")
     
 class WordleAPICommunicator(object):
     def __init__(self, wordList):
@@ -72,8 +72,7 @@ class WordleAPICommunicator(object):
 
     def generate_new_word(self):
         print("[+] Generating new word!")
-        request = requests.get('http://localhost:3000')
-        return self.get_current_word()
+        request = requests.get(self.ENDPOINT)
 
     def is_server_running(self) -> bool:
         request = requests.get('http://localhost:3000')
@@ -95,6 +94,18 @@ class WordleAPICommunicator(object):
             return WordRanking.YELLOW
         
         return WordRanking.GRAY
+    
+    def print_words_with_color(self, guess, character_info, recursion_depth):
+        for index, char in enumerate(guess):
+            letter_rank = self.letter_to_rank(character_info[index])
+            if letter_rank == WordRanking.GRAY:
+                color = Fore.LIGHTBLACK_EX
+            elif letter_rank == WordRanking.YELLOW:
+                color = Fore.YELLOW
+            elif letter_rank == WordRanking.GREEN:
+                color = Fore.GREEN
+            print(f'{color}{char}{Style.RESET_ALL}', end="")
+        print()
 
     def get_gray_or_yellow_letters(self, known_information, word_rank : WordRanking):
         letters = []
@@ -175,16 +186,9 @@ class WordleAPICommunicator(object):
         if guess in green_words_sorted:
             del green_words_sorted[guess]
             
-        if recursion_depth <= 2:
-            recursion_depth += 1
-            self.get_word_information(guess, known_information, green_words_sorted, recursion_depth)
 
-        if recursion_depth > 2:
-            for index, char in enumerate(guess):
-                letter_rank = self.letter_to_rank(character_info[index])
-                print(f'{char} is a {letter_rank}')
+        self.print_words_with_color(guess, character_info, recursion_depth)
 
-        recursion_depth = 0
         return green_words_sorted
 
 class Serialization(object): 
@@ -215,7 +219,7 @@ class Serialization(object):
                 if word in wordle_list and self.wordle_helper.input_validation(word):
                     self.words[word] = frequency
 
-        print(f"Time took to serialize all words: {time.time() - current_time:.2f}ms. {len(self.words)} words serialized.")
+        print(f"[+] Time took to serialize all words: {time.time() - current_time:.2f}ms. {len(self.words)} words serialized.")
         self.serialized = True
 
     def is_serialized(self) -> bool:
