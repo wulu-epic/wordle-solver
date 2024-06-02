@@ -28,6 +28,6 @@ This Python program implements a guessing game similar to the popular online gam
 - Implement a proper user interface
 
 ## Acknowledgements
-- https://github.com/petergeorgas/Wordle-API?tab=readme-ov-file (for the base server code, although modified (you may need to clone into `wordle_api`))
+- https://github.com/petergeorgas/Wordle-API?tab=readme-ov-file (for the base server code, although modified)
 - Data from https://www.kaggle.com/datasets/rtatman/english-word-frequency/data
 - Inspired by the game `Wordle`
