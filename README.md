@@ -26,6 +26,7 @@ This Python program implements a guessing game similar to the popular online gam
 
 ## Todo
 - Implement a proper user interface
+- Allow users to assign colours to words manually
 
 ## Acknowledgements
 - https://github.com/petergeorgas/Wordle-API?tab=readme-ov-file (for the base server code, although modified)

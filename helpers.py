@@ -44,6 +44,10 @@ class WordleHelper(object):
 
     def main_input_loop(self):
         neutral = self.words
+        print('[-] These are the best starting guesses')
+        top_5 = dict(list(neutral.items())[:5])
+
+        print(top_5)
         for _ in range(self.MAX_GUESSES):
             guess = self.ask_guess()
             info = self.wordle_api_communicator.get_word_information(guess,{}, neutral, 0)
@@ -54,8 +58,10 @@ class WordleHelper(object):
 
             neutral = info
 
-            top30 = dict(list(neutral.items())[:5])
-            print(top30)
+            top_5 = dict(list(neutral.items())[:5])
+            
+            print(top_5, end="")
+            print(f" Showing 5/{len(list(neutral.items()))} results")
         
         print("[-] Game over!")
     

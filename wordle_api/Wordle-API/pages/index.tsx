@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import { getWordOfTheDay, getRandomWord, get_current_word, current_random_word } from "../word-util/util";
 import { useState, useEffect } from "react";
 
 const Home: NextPage = () => {

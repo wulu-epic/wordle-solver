@@ -3,7 +3,7 @@ import { five_char_words } from "./word_list";
 
 let cached_date: Date = new Date();
 let cached_idx = -1;
-var current_random_word : string = '';
+let current_random_word : string = '';
 
 /**
  * Determines the number of days a specific `Date` has been since 01/01/2000.
@@ -85,4 +85,4 @@ const getWordOfTheDay = (): string => {
 	return five_char_words[idx];
 };
 
-export { getRandomWord, getWordOfTheDay, getDayDiff as getDayOfYear, isCharInWord, get_current_word, current_random_word };
+export { getRandomWord, getWordOfTheDay, getDayDiff as getDayOfYear, isCharInWord, get_current_word};

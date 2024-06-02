@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getRandomWord, getWordOfTheDay, isCharInWord, get_current_word} from "../../word-util/util";
+import { getRandomWord, isCharInWord} from "../../word-util/util";
 
 type CharacterInfo = {
 	char: string;
