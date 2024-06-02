@@ -20,7 +20,6 @@ def main():
 
     #print("[+] The current word is", current_word)
     wordle_helper.main_input_loop()
-    
 
 if __name__ == "__main__":
     main()

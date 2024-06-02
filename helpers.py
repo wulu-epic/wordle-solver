@@ -60,9 +60,9 @@ class WordleHelper(object):
         print("[-] Game over!")
     
 class WordleAPICommunicator(object):
-    def __init__(self, wordList):
+    def __init__(self, word_list):
         self.ENDPOINT = "http://localhost:3000/api/wordle"
-        self.word_list : dict = wordList
+        self.word_list : dict = word_list
 
         self.colour_funcs = {
             "gray": self.gray_check,
@@ -72,7 +72,7 @@ class WordleAPICommunicator(object):
 
     def generate_new_word(self):
         print("[+] Generating new word!")
-        request = requests.get(self.ENDPOINT)
+        requests.get(self.ENDPOINT)
 
     def is_server_running(self) -> bool:
         request = requests.get('http://localhost:3000')
@@ -188,7 +188,6 @@ class WordleAPICommunicator(object):
             
 
         self.print_words_with_color(guess, character_info, recursion_depth)
-
         return green_words_sorted
 
 class Serialization(object): 
