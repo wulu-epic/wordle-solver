@@ -1,0 +1,11 @@
+.wotd {
+	color: #0070f3;
+}
+
+.container {
+	display: flex;
+	height: 100vh;
+	font-size: xx-large;
+	align-items: center;
+	justify-content: center;
+}
