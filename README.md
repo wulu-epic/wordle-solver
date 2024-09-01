@@ -8,13 +8,13 @@ This Python program implements a guessing game similar to the popular online gam
 
 - **Closest Word Suggestion:** In addition to evaluating the accuracy of the guess, the program offers a suggestion for the closest word from the list based on the guesses made by the player so far. This feature enhances the player's experience by providing guidance and hints during the game.
 
-## How to Play:
+## How to run:
 
-1. **Launch the Program:** Run the Python script `run.bat` to start the game & server and wait.
+1. **Launch the Program:** Run the script `run.bat` to start & wait for the server to start.
 
 2. **Guess the Word:** Input your guess when prompted by the program.
 
-3. **Continue Guessing:** Keep guessing until you correctly identify the word or exhaust the allowed number of attempts.
+3. **Continue Guessing:** Keep guessing until you correctly identify the word or exhaust the allowed number of attempts. The CLI will print out 5 words that might be the answer with the information it's gained from your guessing.
 
 ## Requirements:
 
